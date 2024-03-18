@@ -7,7 +7,7 @@ const mongoose = require('./db'); //import the database connection
 const app = express();
 
 //include routes
-const playerRoutes = require('./src/routes/playerRoutes')
+const playerRoutes = require('./routes/playerRoutes')
 
 //Middleware
 app.use(express.json());
