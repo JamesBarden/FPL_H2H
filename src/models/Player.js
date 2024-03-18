@@ -2,10 +2,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const playerSchema = new Schema({
-	name: String,
-	position: String,
-	points: Number,
-	// Add other fields as needed
+    name: String,
+    team: String,
+    position: String,
+    stats: {
+        goals: Number,
+        assists: Number,
+        // Add other relevant stats as needed
+    },
+    gameweekPoints: [Number] // Array of length 38
 });
 
 const Player = mongoose.model('Player', playerSchema);

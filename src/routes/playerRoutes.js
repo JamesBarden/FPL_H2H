@@ -6,8 +6,11 @@ const Player = require('../models/Player');
 router.post('/players', (req, res) => {
     const newPlayer = new Player({
         name: req.body.name,
+        team: req.body.team,
         position: req.body.position,
-        points: req.body.points,
+        stats: req.body.stats,
+        gameweekPoints: req.body.gameweekPoints || new Array(38).fill(0) // Initialize with zeros if not provided
+        git 
     });
 
     newPlayer.save((err) => {
