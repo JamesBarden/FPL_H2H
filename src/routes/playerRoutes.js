@@ -24,4 +24,14 @@ router.post('/players', (req, res) => {
     });
 });
 
+router.get('/players', async (req, res) => {
+    try {
+        const players = await Player.find(); // Fetch all players from the database
+        res.json(players);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error fetching players from the database');
+    }
+});
+
 module.exports = router;
