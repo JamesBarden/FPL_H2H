@@ -8,7 +8,7 @@ const mongoose = require('./db'); //import the database connection
 const app = express();
 
 // Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 //include routes
 const playerRoutes = require('./routes/playerRoutes')
