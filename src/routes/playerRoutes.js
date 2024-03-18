@@ -10,7 +10,7 @@ router.post('/players', (req, res) => {
         position: req.body.position,
         stats: req.body.stats,
         gameweekPoints: req.body.gameweekPoints || new Array(38).fill(0) // Initialize with zeros if not provided
-        git 
+        
     });
 
     newPlayer.save((err) => {
