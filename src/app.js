@@ -1,6 +1,12 @@
 // Import required modules
 const express = require('express');
 const path = require('path');
+
+//adding these to use later
+const cors = require('cors');
+const morgan = require('morgan');
+
+
 require('dotenv').config(); //load environment variables
 const mongoose = require('./db'); //import the database connection
 
@@ -11,11 +17,16 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../public')));
 
 //include routes
-const playerRoutes = require('./routes/playerRoutes')
+const playerRoutes = require('./routes/playerRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 //Middleware
 app.use(express.json());
-app.use('/api', playerRoutes);
+app.use(cors());
+app.use(morgan('dev'));
+app.use('/api/players', playerRoutes);
+app.use('/api/users', userRoutes);
+
 
 //Error handling middleware 
 app.use((err, req, res, next) => {

@@ -3,7 +3,7 @@ const router = express.Router();
 const Player = require('../models/Player');
 
 // Route to create a new player
-router.post('/players', (req, res) => {
+router.post('/', (req, res) => {
     const newPlayer = new Player({
         name: req.body.name,
         team: req.body.team,
@@ -24,9 +24,10 @@ router.post('/players', (req, res) => {
     });
 });
 
-router.get('/players', async (req, res) => {
+// Fetch all players from the database
+router.get('/', async (req, res) => {
     try {
-        const players = await Player.find(); // Fetch all players from the database
+        const players = await Player.find(); 
         res.json(players);
     } catch (err) {
         console.error(err);
