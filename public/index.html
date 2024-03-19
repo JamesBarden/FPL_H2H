@@ -6,11 +6,34 @@
     <title>Fantasy Premier League</title>
 </head>
 <body>
-    <h1>Select a Player</h1>
-    <select id="playerDropdown">
-        <option>Loading players...</option>
-    </select>
+    <div id="loginSection">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <input type="text" id="loginUsername" placeholder="Username" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <button id="showRegisterForm">Don't have an account? Create one.</button>
+    </div>
+
+    <div id="registerSection" style="display: none;">
+        <h1>Register</h1>
+        <form id="registerForm">
+            <input type="text" id="registerUsername" placeholder="Username" required>
+            <input type="email" id="registerEmail" placeholder="Email" required>
+            <input type="password" id="registerPassword" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <div id="playerSelection" style="display: none;">
+        <h1>Select a Player</h1>
+        <select id="playerDropdown">
+            <option>Loading players...</option>
+        </select>
+    </div>
 
     <script src="app.js"></script>
 </body>
 </html>
+
