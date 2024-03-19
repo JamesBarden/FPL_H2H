@@ -1,0 +1,56 @@
+DESIGN DOCUMENT
+5-a-Side Fantasy Premier League Game 
+
+**Overview**
+
+This document outlines the design and planned features for a 5-a-side fantasy Premier League game. Users will create teams of 5 players, compete in head-to-head matches, and track their progress on a leaderboard.
+
+**Features**
+
+ - User Authentication
+        Login/Registration: When the web app is first opened, the user will be prompted to "Log in" or "Create an account."
+        User Database: A database will be created to keep track of all users with accounts for the game.
+
+ - Team Selection
+        Player Selection: Users will select a team of 5 players from the available Premier League players.
+        Position Requirements: Each team must include at least 1 goalkeeper, 1 defender, 1 midfielder, and 1 striker. The fifth player can                    		be any outfield player (non-goalkeeper).
+        Team Limitations: Users cannot select more than 2 players from the same real-world team.
+
+ - Scoring System
+        Fantasy Scores: Develop logic to determine each player's fantasy score for the gameweek based on their real-world performance.
+
+ - Player Database
+        Player Information: The player database will include all current Premier League players and will be updated to include more stats.
+        Data Model: The position and team fields in the player model will be changed from strings to enumerations or eventually their own 		class.
+
+ - Live Stats (Low Priority)
+        Automatic Updates: Eventually, the app will pull live stats from games to automatically update the web app. Initially, stats will  		be updated manually.
+
+ - Matchmaking and Leaderboard
+        ELO System: Implement an ELO system for head-to-head matches, where each player is matched with a player of similar ELO.
+        Leaderboard: A leaderboard will be visible to all players, showing their ELO rankings.
+
+**Technical Considerations**
+
+ - Backend
+        Technologies: Node.js, Express.js, MongoDB.
+        Endpoints: Create RESTful API endpoints for user registration/login, team selection, score calculation, and leaderboard.
+
+ - Frontend
+        Technologies: HTML, CSS, JavaScript (React or Vue.js for a more dynamic interface).
+        User Interface: Design a user-friendly interface for team selection, match results, and leaderboard display.
+
+**Security**
+
+Authentication: Use JWT (JSON Web Tokens) for secure user authentication.
+Data Validation: Implement input validation to prevent SQL injection and other security vulnerabilities.
+
+**Deployment**
+
+Hosting: Consider using cloud services like Heroku or AWS for hosting the web app.
+Continuous Integration: Set up a CI/CD pipeline for automated testing and deployment.
+
+**Future Enhancements**
+
+Mobile App: Develop a mobile version of the game for iOS and Android.
+Social Features: Add social features like friend lists, messaging, and in-game challenges.
