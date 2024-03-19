@@ -35,9 +35,11 @@ async function handleLogin(event) {
     });
 
     if (response.ok) {
+        const data = await response.json(); //get response data 
         document.getElementById('loginSection').style.display = 'none';
         document.getElementById('playerSelection').style.display = 'block';
         fetchPlayers();
+        displaySelectedPlayers(data.selectedPlayers);
     } else {
         alert('Invalid credentials');
     }
@@ -64,6 +66,25 @@ async function handleRegister(event) {
         alert('Error creating account');
     }
 }
+
+//displayed players selected by user.
+async function displaySelectedPlayers(selectedPlayerIds) {
+    const playersResponse = await fetch('/api/players');
+    const allPlayers = await playersResponse.json();
+    const selectedPlayersDiv = document.getElementById('selectedPlayers');
+
+    // Clear existing content
+    selectedPlayersDiv.innerHTML = '';
+
+    // Display selected players or "No player selected" for empty slots
+    selectedPlayerIds.forEach((id, index) => {
+        const player = allPlayers.find(player => player._id === id);
+        const playerElement = document.createElement('div');
+        playerElement.textContent = player ? player.name : 'No player selected';
+        selectedPlayersDiv.appendChild(playerElement);
+    });
+}
+
 
 // Event listeners
 document.getElementById('loginForm').addEventListener('submit', handleLogin);

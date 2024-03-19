@@ -6,9 +6,14 @@ const router = express.Router();
 
 router.post('/register', async (req, res) => {
     try {
-        const newUser = new User(req.body);
+        const newUser = new User({
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
+            selectedPlayers: [null, null, null, null, null] // Initialize with 5 null values
+        });
         await newUser.save();
-        res.status(201).send({ message: 'User registered successfully' });
+        res.status(201).send({ message: 'User registered successfully' })
     } catch (err) {
         console.error(err);
         res.status(500).send('Error registering user');
@@ -26,7 +31,7 @@ router.post('/login', async (req, res) => {
             return res.status(401).send({ message: 'Invalid credentials' });
         }
         // Generate a token, set up a session, or handle login success as needed
-        res.send({ message: 'Login successful' });
+        res.send({ message: 'Login successful', selectedPlayers: user.selectedPlayers });
     } catch (err) {
         console.error(err);
         res.status(500).send('Error logging in');

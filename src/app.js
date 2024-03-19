@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 const playerRoutes = require('./routes/playerRoutes');
 const userRoutes = require('./routes/userRoutes');
 
-//Middleware
+//middleware
 app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'));

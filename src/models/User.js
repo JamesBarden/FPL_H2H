@@ -8,6 +8,7 @@ const userSchema = new Schema({
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    selectedPlayers: { type: [Schema.Types.ObjectId], ref: 'Player', default: [] },
     // Add other fields as needed
 });
 
