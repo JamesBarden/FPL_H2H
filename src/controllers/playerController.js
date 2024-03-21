@@ -14,5 +14,3 @@ function updatePlayerPoints(playerName, gameweek, points) {
     );
 }
 
-// Example usage
-updatePlayerPoints('Kevin De Bruyne', 1, 5);
