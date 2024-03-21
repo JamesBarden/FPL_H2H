@@ -43,6 +43,8 @@ async function handleLogin(event) {
         loggedInUsername = username;
         document.getElementById('loginSection').style.display = 'none';
         document.getElementById('playerSelection').style.display = 'block';
+        document.getElementById('userStatus').style.display = 'block';
+        document.getElementById('signedInUsername').textContent = loggedInUsername;
         // Initialize the selectedPlayers array with the data from the server
         selectedPlayers = data.selectedPlayers;
 
@@ -124,4 +126,12 @@ document.getElementById('updateTeam').addEventListener('click', async () => {
     } else {
         alert('Error updating team');
     }
+});
+
+document.getElementById('logoutButton').addEventListener('click', () => {
+    document.getElementById('userStatus').style.display = 'none';
+    document.getElementById('loginSection').style.display = 'block';
+    document.getElementById('playerSelection').style.display = 'none';
+    loggedInUsername = null;
+    // Clear any other user-specific data or UI elements as needed
 });
