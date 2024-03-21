@@ -41,10 +41,17 @@ async function handleLogin(event) {
     if (response.ok) {
         const data = await response.json(); //get response data 
         loggedInUsername = username;
+
+        //remove login section
         document.getElementById('loginSection').style.display = 'none';
+
+        //display player selection
         document.getElementById('playerSelection').style.display = 'block';
+
+        //display logout text
         document.getElementById('userStatus').style.display = 'block';
         document.getElementById('signedInUsername').textContent = loggedInUsername;
+
         // Initialize the selectedPlayers array with the data from the server
         selectedPlayers = data.selectedPlayers;
 
@@ -128,6 +135,7 @@ document.getElementById('updateTeam').addEventListener('click', async () => {
     }
 });
 
+//event listener for logout button press
 document.getElementById('logoutButton').addEventListener('click', () => {
     document.getElementById('userStatus').style.display = 'none';
     document.getElementById('loginSection').style.display = 'block';
