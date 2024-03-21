@@ -38,4 +38,15 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.post('/updateTeam', async (req, res) => {
+    try {
+        const { username, selectedPlayers } = req.body;
+        await User.findOneAndUpdate({ username }, { selectedPlayers });
+        res.send({ message: 'Team updated successfully' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error updating team');
+    }
+});
+
 module.exports = router;

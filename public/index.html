@@ -31,7 +31,14 @@
         <select id="playerDropdown">
             <option>Loading players...</option>
         </select>
-        <div id="selectedPlayers"></div> <!-- New div for displaying selected players -->
+        <div id="selectedPlayers">
+            <div class="playerSlot" data-index="0">No player selected</div>
+            <div class="playerSlot" data-index="1">No player selected</div>
+            <div class="playerSlot" data-index="2">No player selected</div>
+            <div class="playerSlot" data-index="3">No player selected</div>
+            <div class="playerSlot" data-index="4">No player selected</div>
+        </div>
+        <button id="updateTeam">Update Team</button>
     </div>
 
     <script src="app.js"></script>

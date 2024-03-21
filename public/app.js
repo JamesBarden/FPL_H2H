@@ -1,3 +1,7 @@
+//global variable to store the logged-in user's username
+let loggedInUsername = null;
+
+
 // Function to fetch players from the backend and populate the dropdown
 async function fetchPlayers() {
     const response = await fetch('/api/players');
@@ -36,10 +40,14 @@ async function handleLogin(event) {
 
     if (response.ok) {
         const data = await response.json(); //get response data 
+        loggedInUsername = username;
         document.getElementById('loginSection').style.display = 'none';
         document.getElementById('playerSelection').style.display = 'block';
+        // Initialize the selectedPlayers array with the data from the server
+        selectedPlayers = data.selectedPlayers;
+
         fetchPlayers();
-        displaySelectedPlayers(data.selectedPlayers);
+        displaySelectedPlayers(selectedPlayers);
     } else {
         alert('Invalid credentials');
     }
@@ -71,17 +79,13 @@ async function handleRegister(event) {
 async function displaySelectedPlayers(selectedPlayerIds) {
     const playersResponse = await fetch('/api/players');
     const allPlayers = await playersResponse.json();
-    const selectedPlayersDiv = document.getElementById('selectedPlayers');
 
-    // Clear existing content
-    selectedPlayersDiv.innerHTML = '';
-
-    // Display selected players or "No player selected" for empty slots
+    // Display selected players in their respective slots
     selectedPlayerIds.forEach((id, index) => {
+        const playerSlot = document.querySelector(`.playerSlot[data-index="${index}"]`);
         const player = allPlayers.find(player => player._id === id);
-        const playerElement = document.createElement('div');
-        playerElement.textContent = player ? player.name : 'No player selected';
-        selectedPlayersDiv.appendChild(playerElement);
+        playerSlot.textContent = player ? player.name : 'No player selected';
+ 
     });
 }
 
@@ -92,4 +96,32 @@ document.getElementById('registerForm').addEventListener('submit', handleRegiste
 document.getElementById('showRegisterForm').addEventListener('click', () => {
     document.getElementById('loginSection').style.display = 'none';
     document.getElementById('registerSection').style.display = 'block';
+});
+
+// Function to update the selected player for a given slot
+function updateSelectedPlayer(index, playerId) {
+    selectedPlayers[index] = playerId;
+    displaySelectedPlayers(selectedPlayers);
+}
+
+document.querySelectorAll('.playerSlot').forEach(slot => {
+    slot.addEventListener('click', () => {
+        const index = slot.getAttribute('data-index');
+        const selectedPlayerId = document.getElementById('playerDropdown').value;
+        updateSelectedPlayer(index, selectedPlayerId);
+    });
+});
+
+document.getElementById('updateTeam').addEventListener('click', async () => {
+    const response = await fetch('/api/users/updateTeam', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: loggedInUsername, selectedPlayers }) // Assuming 'username' is the logged-in user's username
+    });
+
+    if (response.ok) {
+        alert('Team updated successfully!');
+    } else {
+        alert('Error updating team');
+    }
 });
