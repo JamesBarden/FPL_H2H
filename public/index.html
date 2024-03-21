@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fantasy Premier League</title>
+
+    <style>
+        .teamFormation {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .playerRectangle {
+            display: block;
+            padding: 5px 10px;
+            border-radius: 5px; /* Slight rounding of corners */
+            background-color: lightgreen; /* lightgreen background */
+            color: black; /* Black text */
+            margin: 5px; /* Some spacing between rectangles */
+            font-weight: bold; /* Bold text */
+            width: 200px; /* Fixed width for rectangles */
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div id="loginSection">
@@ -31,12 +51,12 @@
         <select id="playerDropdown">
             <option>Loading players...</option>
         </select>
-        <div id="selectedPlayers">
-            <div class="playerSlot" data-index="0">No player selected</div>
-            <div class="playerSlot" data-index="1">No player selected</div>
-            <div class="playerSlot" data-index="2">No player selected</div>
-            <div class="playerSlot" data-index="3">No player selected</div>
-            <div class="playerSlot" data-index="4">No player selected</div>
+        <div id="selectedPlayers" class="teamFormation">
+            <div class="playerSlot playerRectangle" data-index="0">Goalkeeper: No player selected</div>
+            <div class="playerSlot playerRectangle" data-index="1">Defender: No player selected</div>
+            <div class="playerSlot playerRectangle" data-index="2">Midfielder: No player selected</div>
+            <div class="playerSlot playerRectangle" data-index="3">Midfielder: No player selected</div>
+            <div class="playerSlot playerRectangle" data-index="4">Striker: No player selected</div>
         </div>
         <button id="updateTeam">Update Team</button>
     </div>
