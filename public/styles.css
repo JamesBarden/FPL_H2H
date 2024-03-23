@@ -1,0 +1,44 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Custom styles for your Fantasy Premier League app */
+
+body {
+    background-color: #f8f9fa; /* Light background color */
+}
+
+/* Custom styling for the player rectangles */
+.playerRectangle {
+    background-color: #28a745; /* Bootstrap success color */
+    color: white; /* White text */
+    border: none; /* No border */
+}
+
+/* Custom styling for the login and register sections */
+#loginSection, #registerSection {
+    max-width: 400px; /* Set a max width */
+    margin: auto; /* Center the forms */
+    padding: 20px; /* Add some padding */
+    background-color: white; /* White background */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+/* Custom styling for the navigation bar */
+.navbar-brand {
+    font-weight: bold; /* Make the brand text bold */
+}
+
+.navbar-custom {
+    background-color: #ADD8E6; /* Light blue background */
+    /*display: none; /*hide the nav bar initially*/
+}
+
+.nav-link {
+    color: #FFFFFF; /* White text for nav links */
+}
+
+.navbar-brand {
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Cool font */
+    font-size: 2rem; /* Larger font size */
+    color: #FFFFFF; /* White text */
+}

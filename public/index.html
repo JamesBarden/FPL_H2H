@@ -4,69 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fantasy Premier League</title>
-
-    <style>
-        .teamFormation {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .playerRectangle {
-            display: block;
-            padding: 5px 10px;
-            border-radius: 5px; /* Slight rounding of corners */
-            background-color: lightgreen; /* lightgreen background */
-            color: black; /* Black text */
-            margin: 5px; /* Some spacing between rectangles */
-            font-weight: bold; /* Bold text */
-            width: 200px; /* Fixed width for rectangles */
-            text-align: center;
-        }
-    </style>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet"> <!-- Link to custom styles -->
 </head>
+
 <body>
-    <div id="loginSection">
-        <h1>Login</h1>
-        <form id="loginForm">
-            <input type="text" id="loginUsername" placeholder="Username" required>
-            <input type="password" id="loginPassword" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-        <button id="showRegisterForm">Don't have an account? Create one.</button>
-    </div>
-
-    <div id="registerSection" style="display: none;">
-        <h1>Register</h1>
-        <form id="registerForm">
-            <input type="text" id="registerUsername" placeholder="Username" required>
-            <input type="email" id="registerEmail" placeholder="Email" required>
-            <input type="password" id="registerPassword" placeholder="Password" required>
-            <button type="submit">Register</button>
-        </form>
-    </div>
-
-    <div id="playerSelection" style="display: none;">
-        <h1>Select your Team</h1>
-        <select id="playerDropdown">
-            <option>Loading players...</option>
-        </select>
-        <div id="selectedPlayers" class="teamFormation">
-            <div class="playerSlot playerRectangle" data-index="0">Goalkeeper: No player selected</div>
-            <div class="playerSlot playerRectangle" data-index="1">Defender: No player selected</div>
-            <div class="playerSlot playerRectangle" data-index="2">Midfielder: No player selected</div>
-            <div class="playerSlot playerRectangle" data-index="3">Midfielder: No player selected</div>
-            <div class="playerSlot playerRectangle" data-index="4">Striker: No player selected</div>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">5-a-Side FPL</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Select Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Fixtures</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Account Info</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <button id="updateTeam">Update Team</button>
+    </nav>
+
+    <div class="container mt-5">
+        <div id="loginSection">
+            <h1>Login</h1>
+            <form id="loginForm" class="mb-3">
+                <div class="mb-3">
+                    <input type="text" id="loginUsername" class="form-control" placeholder="Username" required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" id="loginPassword" class="form-control" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <button id="showRegisterForm" class="btn btn-secondary">Don't have an account? Create one.</button>
+        </div>
+
+        <div id="registerSection" class="mb-3" style="display: none;">
+            <h1>Register</h1>
+            <form id="registerForm">
+                <div class="mb-3">
+                    <input type="text" id="registerUsername" class="form-control" placeholder="Username" required>
+                </div>
+                <div class="mb-3">
+                    <input type="email" id="registerEmail" class="form-control" placeholder="Email" required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" id="registerPassword" class="form-control" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+
+        <div id="playerSelection" style="display: none;">
+            <h1>Select your Team</h1>
+            <select id="playerDropdown" class="form-select mb-3">
+                <option>Loading players...</option>
+            </select>
+            <div id="selectedPlayers" class="teamFormation">
+                <div class="playerSlot playerRectangle" data-index="0">Goalkeeper: No player selected</div>
+                <div class="playerSlot playerRectangle" data-index="1">Defender: No player selected</div>
+                <div class="playerSlot playerRectangle" data-index="2">Midfielder: No player selected</div>
+                <div class="playerSlot playerRectangle" data-index="3">Midfielder: No player selected</div>
+                <div class="playerSlot playerRectangle" data-index="4">Striker: No player selected</div>
+            </div>
+            <button id="updateTeam" class="btn btn-success">Update Team</button>
+        </div>
+
+        <div id="userStatus" style="display: none; position: absolute; top: 0; right: 0; padding: 10px;">
+            <div>Currently signed in as: <span id="signedInUsername"></span></div>
+            <button id="logoutButton" class="btn btn-warning">Log out</button>
+        </div>
     </div>
 
-    <div id="userStatus" style="display: none; position: absolute; top: 0; right: 0; padding: 10px;">
-        <div>Currently signed in as: <span id="signedInUsername"></span></div>
-        <button id="logoutButton">Log out</button>
-    </div>
-
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
-

@@ -45,6 +45,9 @@ async function handleLogin(event) {
         //remove login section
         document.getElementById('loginSection').style.display = 'none';
 
+        //enable navbar
+        //document.getElementById('mainNavbar').style.display = 'flex';
+
         //display player selection
         document.getElementById('playerSelection').style.display = 'block';
 
